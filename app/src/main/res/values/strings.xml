@@ -1,3 +1,19 @@
 <resources>
-    <string name="app_name">DevIntensive</string>
+    <string name="app_name">Михайлов Михаил</string>
+    <string name="about_self_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="about_self_hint">О себе</string>
+    <string name="repository_text">github.com/netherpyro/DevIntensive</string>
+    <string name="repository_hint">Репозиторий</string>
+    <string name="profile_text">vk.com/netherpyro</string>
+    <string name="profile_hint">Профиль в VK</string>
+    <string name="email_text">netherpyro@gmail.com</string>
+    <string name="email_hint">E-mail</string>
+    <string name="phone_text">8-(903)-927-xx-xx</string>
+    <string name="phone_hint">Мобильный</string>
+    <string name="projects_label">Проектов</string>
+    <string name="projects_counter_label">5</string>
+    <string name="num_coded_label">Написано строк кода</string>
+    <string name="num_coded_counter_label">5</string>
+    <string name="rating_label">Рейтинг</string>
+    <string name="rating_counter_label">5</string>
 </resources>
