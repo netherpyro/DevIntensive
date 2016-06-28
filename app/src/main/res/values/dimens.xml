@@ -4,6 +4,7 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
 
     <!-- Sizes -->
+    <dimen name="size_xx_smaller_14">14sp</dimen>
     <dimen name="size_x_smaller_16">16sp</dimen>
     <dimen name="size_smaller_18">18sp</dimen>
     <dimen name="size_small_24">24sp</dimen>
@@ -19,4 +20,8 @@
     <dimen name="spacing_larger_72">72dp</dimen>
     <dimen name="size_big_72">72dp</dimen>
     <dimen name="line_size">1dp</dimen>
+    <dimen name="profile_image_size">256dp</dimen>
+
+
+    <dimen name="fab_right_space">8dp</dimen>
 </resources>
