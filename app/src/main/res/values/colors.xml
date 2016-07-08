@@ -6,7 +6,9 @@
 
     <color name="color_grey">#5d5d5d</color>
     <color name="color_light_grey">#9c9c9c</color>
-
+    <color name="color_grey_background">#454545</color>
+    
     <color name="color_black">#000000</color>
     <color name="color_white">#ffffff</color>
+    <color name="color_red">#ff44</color>
 </resources>

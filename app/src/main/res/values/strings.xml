@@ -2,9 +2,9 @@
     <string name="app_name">Михайлов Михаил</string>
     <string name="about_self_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
     <string name="about_self_hint">О себе</string>
-    <string name="repository_text">github.com/netherpyro/DevIntensive</string>
+    <string name="repository_text">github.com/</string>
     <string name="repository_hint">Репозиторий</string>
-    <string name="profile_text">vk.com/netherpyro</string>
+    <string name="profile_text">vk.com/</string>
     <string name="profile_hint">Профиль в VK</string>
     <string name="email_text">netherpyro@gmail.com</string>
     <string name="email_hint">E-mail</string>
@@ -16,4 +16,16 @@
     <string name="num_coded_counter_label">5</string>
     <string name="rating_label">Рейтинг</string>
     <string name="rating_counter_label">5</string>
+
+    <string name="user_profile.placeholder.image">Изменить фотографию профиля</string>
+    <string name="user_profile.dialog.gallery">Загрузить из галлереи</string>
+    <string name="user_profile.dialog.camera">Сделать снимок</string>
+    <string name="user_profile.dialog.cancel">Отмена</string>
+    <string name="user_profile_dialog_title">Изменить фотографию профиля</string>
+    <string name="user_profile.choose.message">Выберите фото</string>
+    <string name="permission_alert_message">Для корректной работы приложения необходимо дать требуемые права</string>
+    <string name="login.password_hint">Пароль</string>
+    <string name="login.forgot_password">Забыли пароль?</string>
+    <string name="login.enter_button_label">Войти</string>
+    <string name="login.enter_label">Войти</string>
 </resources>
