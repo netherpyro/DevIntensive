@@ -58,10 +58,6 @@ import butterknife.ButterKnife;
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private static final String TAG = ConstantManager.TAG_PREFIX + "Main Activity";
-
-    private DataManager mDataManager;
-    private int mCurrentEditMode = 0;
-
     @BindView(R.id.main_coordinator_container)
     CoordinatorLayout mCoordinatorLayout;
     @BindView(R.id.toolbar)
@@ -78,13 +74,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     AppBarLayout mAppBarLayout;
     @BindView(R.id.user_photo_img)
     ImageView mProfileImage;
-
     @BindViews({R.id.phone_et, R.id.email_et, R.id.vk_et, R.id.repository_et, R.id.about_self_et})
     List<EditText> mUserInfoViews;
-
     @BindViews({R.id.call_img, R.id.sendto_img, R.id.view_vk_profile_img, R.id.view_git_img})
     List<ImageView> mImageViews;
-
+    private DataManager mDataManager;
+    private int mCurrentEditMode = 0;
     private AppBarLayout.LayoutParams mAppBarParams = null;
     private File mPhotoFile = null;
     private Uri mSelectedImage = null;
@@ -397,7 +392,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         takeGalleryIntent.setType("/image/*");
         startActivityForResult(
-                Intent.createChooser(takeGalleryIntent, getString(R.string.user_profile_choose_message)),
+                Intent.createChooser(takeGalleryIntent, getString(R.string.profile_choose_message)),
                 ConstantManager.REQUEST_GALLERY_PICTURE
         );
     }
@@ -479,12 +474,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         switch (id) {
             case ConstantManager.LOAD_PROFILE_PHOTO:
                 String[] selectItems = {
-                        getString(R.string.user_profile_dialog_gallery),
-                        getString(R.string.user_profile_dialog_camera),
-                        getString(R.string.user_profile_dialog_cancel)
+                        getString(R.string.profile_dialog_gallery),
+                        getString(R.string.profile_dialog_camera),
+                        getString(R.string.profile_dialog_cancel)
                 };
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle(getString(R.string.user_profile_dialog_title));
+                builder.setTitle(getString(R.string.profile_dialog_title));
                 builder.setItems(selectItems, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int choiceItem) {

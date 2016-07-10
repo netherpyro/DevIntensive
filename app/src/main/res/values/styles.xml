@@ -108,4 +108,9 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:background">@color/color_light_grey</item>
     </style>
+
+    <style name="AppTheme.Button.Red" parent="Base.Widget.AppCompat.Button">
+        <item name="colorButtonNormal">@color/color_accent</item>
+        <item name="android:textColor">@color/color_white</item>
+    </style>
 </resources>
