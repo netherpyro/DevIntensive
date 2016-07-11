@@ -14,6 +14,7 @@ import com.softdesign.devintensive.R;
 import com.softdesign.devintensive.data.managers.DataManager;
 import com.softdesign.devintensive.data.network.req.UserLoginReq;
 import com.softdesign.devintensive.data.network.res.UserModelRes;
+import com.softdesign.devintensive.utils.NetworkStatusChecker;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -78,23 +79,29 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     }
 
     private void signIn() {
-        Call<UserModelRes> call = mDataManager.loginUser(new UserLoginReq(mLogin.getText().toString(), mPassword.getText().toString()));
-        call.enqueue(new Callback<UserModelRes>() {
-            @Override
-            public void onResponse(Call<UserModelRes> call, Response<UserModelRes> response) {
-                if (response.code() == 200) {
-                    loginSuccess(response);
-                } else if (response.code() == 404) {
-                    showSnackBar("Invalid credentials");
-                } else {
-                    showSnackBar("Something going wrong");
-                }
-            }
 
-            @Override
-            public void onFailure(Call<UserModelRes> call, Throwable t) {
-                //// TODO: 10.07.16 обработать ошибки ретрофита
-            }
-        });
+        if (NetworkStatusChecker.isNetworkAvailable(this)) {
+
+            Call<UserModelRes> call = mDataManager.loginUser(new UserLoginReq(mLogin.getText().toString(), mPassword.getText().toString()));
+            call.enqueue(new Callback<UserModelRes>() {
+                @Override
+                public void onResponse(Call<UserModelRes> call, Response<UserModelRes> response) {
+                    if (response.code() == 200) {
+                        loginSuccess(response);
+                    } else if (response.code() == 404) {
+                        showSnackBar("Invalid credentials");
+                    } else {
+                        showSnackBar("Something going wrong");
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<UserModelRes> call, Throwable t) {
+                    //// TODO: 10.07.16 обработать ошибки ретрофита
+                }
+            });
+        } else {
+            showSnackBar("Network is unavailable. Try it later");
+        }
     }
 }

@@ -37,6 +37,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.softdesign.devintensive.R;
 import com.softdesign.devintensive.data.managers.DataManager;
@@ -78,6 +79,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     List<EditText> mUserInfoViews;
     @BindViews({R.id.call_img, R.id.sendto_img, R.id.view_vk_profile_img, R.id.view_git_img})
     List<ImageView> mImageViews;
+    @BindViews({R.id.rating_value, R.id.coded_lines_value, R.id.projects_value})
+    List<TextView> mUserValueViews;
+
     private DataManager mDataManager;
     private int mCurrentEditMode = 0;
     private AppBarLayout.LayoutParams mAppBarParams = null;
@@ -104,7 +108,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         setupToolbar();
         setupDrawer();
-        loadUserInfoValue();
+        initUserFields();
+        initUserInfoValue();
+
         Picasso.with(this)
                 .load(mDataManager.getPreferencesManager().loadUserPhoto())
                 .placeholder(R.drawable.user_bg) // TODO: 01.07.16 сделать placeholder, transform + crop
@@ -152,7 +158,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     protected void onPause() {
         super.onPause();
         Log.d(TAG, "onPause");
-        saveUserInfoValue();
+        saveUserFields();
     }
 
     @Override
@@ -356,11 +362,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             mCollapsingToolbar.setExpandedTitleColor(getResources().
                     getColor(R.color.color_white));
 
-            saveUserInfoValue();
+            saveUserFields();
         }
     }
 
-    private void loadUserInfoValue() {
+    private void initUserFields() {
         List<String> userData = mDataManager.getPreferencesManager().loadUserProfileData();
 
         for (int i = 0; i < userData.size(); i++) {
@@ -368,13 +374,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
-    private void saveUserInfoValue() {
+    private void saveUserFields() {
         List<String> userData = new ArrayList<>();
 
         for (EditText userFieldView : mUserInfoViews) {
             userData.add(userFieldView.getText().toString());
         }
         mDataManager.getPreferencesManager().saveUserProfileData(userData);
+    }
+
+    private void initUserInfoValue() {
+        List<String> userData = mDataManager.getPreferencesManager().loadUserProfileValue();
+        for (int i = 0; i < userData.size(); i++) {
+            mUserValueViews.get(i).setText(userData.get(i));
+        }
     }
 
     @Override
