@@ -98,4 +98,28 @@ public class PreferencesManager {
     public String getUserId() {
         return mSharedPreferences.getString(ConstantManager.USER_ID_KEY, "null");
     }
+
+    public void saveFullName(String firstName, String lastName) {
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+
+        editor.putString(ConstantManager.USER_FULL_NAME, firstName + " " + lastName);
+
+        editor.apply();
+    }
+
+    public String loadFullName() {
+        return mSharedPreferences.getString(ConstantManager.USER_FULL_NAME, "null");
+    }
+
+    public void saveAvatar(Uri uri) {
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+
+        editor.putString(ConstantManager.USER_AVATAR_KEY, uri.toString());
+
+        editor.apply();
+    }
+
+    public Uri loadAvatar() {
+        return Uri.parse(mSharedPreferences.getString(ConstantManager.USER_AVATAR_KEY, "android:resource://com.softdesign.devintensive/drawable/userphoto"));
+    }
 }

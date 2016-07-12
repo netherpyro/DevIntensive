@@ -16,6 +16,9 @@ import com.softdesign.devintensive.data.network.req.UserLoginReq;
 import com.softdesign.devintensive.data.network.res.UserModelRes;
 import com.softdesign.devintensive.utils.NetworkStatusChecker;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
@@ -70,9 +73,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         startActivity(rememberIntent);
     }
 
-    private void loginSuccess(Response<UserModelRes> response) {
-        mDataManager.getPreferencesManager().saveAuthToken(response.body().getData().getToken());
-        mDataManager.getPreferencesManager().saveUserId(response.body().getData().getUser().getId());
+    private void loginSuccess(UserModelRes userModel) {
+        mDataManager.getPreferencesManager().saveAuthToken(userModel.getData().getToken());
+        mDataManager.getPreferencesManager().saveUserId(userModel.getData().getUser().getId());
+        saveUserValues(userModel);
+        saveUserInfo(userModel);
+        mDataManager.getPreferencesManager().saveUserPhoto(Uri.parse(userModel.getData().getUser().getPublicInfo().getPhoto()));
+        mDataManager.getPreferencesManager().saveFullName(userModel.getData().getUser().getFirstName(), userModel.getData().getUser().getSecondName());
 
         Intent loginIntent = new Intent(this, MainActivity.class);
         startActivity(loginIntent);
@@ -87,7 +94,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 @Override
                 public void onResponse(Call<UserModelRes> call, Response<UserModelRes> response) {
                     if (response.code() == 200) {
-                        loginSuccess(response);
+                        loginSuccess(response.body());
                     } else if (response.code() == 404) {
                         showSnackBar("Invalid credentials");
                     } else {
@@ -103,5 +110,28 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         } else {
             showSnackBar("Network is unavailable. Try it later");
         }
+    }
+
+    private void saveUserValues(UserModelRes userModel) {
+
+        int[] userValues = {
+                userModel.getData().getUser().getProfileValues().getRating(),
+                userModel.getData().getUser().getProfileValues().getLinesCode(),
+                userModel.getData().getUser().getProfileValues().getProjects(),
+        };
+
+        mDataManager.getPreferencesManager().saveUserProfileValues(userValues);
+    }
+
+    private void saveUserInfo(UserModelRes userModel) {
+
+        List<String> userInfo = new ArrayList<>(6);
+        userInfo.add(userModel.getData().getUser().getContacts().getPhone());
+        userInfo.add(userModel.getData().getUser().getContacts().getEmail());
+        userInfo.add(userModel.getData().getUser().getContacts().getVk());
+        userInfo.add(userModel.getData().getUser().getRepositories().getRepo().get(0).getGit());
+        userInfo.add(userModel.getData().getUser().getPublicInfo().getBio());
+
+        mDataManager.getPreferencesManager().saveUserProfileData(userInfo);
     }
 }
