@@ -1,31 +1,37 @@
 <resources>
-    <string name="app_name">Михайлов Михаил</string>
-    <string name="about_self_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
-    <string name="about_self_hint">О себе</string>
-    <string name="repository_text">github.com/</string>
-    <string name="repository_hint">Репозиторий</string>
-    <string name="profile_text">vk.com/</string>
-    <string name="profile_hint">Профиль в VK</string>
-    <string name="email_text">netherpyro@gmail.com</string>
-    <string name="email_hint">E-mail</string>
-    <string name="phone_text">8-(903)-927-xx-xx</string>
-    <string name="phone_hint">Мобильный</string>
-    <string name="projects_label">Проектов</string>
-    <string name="projects_counter_label">5</string>
-    <string name="num_coded_label">Написано строк кода</string>
-    <string name="num_coded_counter_label">5</string>
-    <string name="rating_label">Рейтинг</string>
-    <string name="rating_counter_label">5</string>
+    <!-- Font Family -->
+    <string name="ff_regular">sans-serif</string>
+    <string name="ff_medium">sans-serif-medium</string>
 
-    <string name="user_profile.placeholder.image">Изменить фотографию профиля</string>
-    <string name="user_profile.dialog.gallery">Загрузить из галлереи</string>
-    <string name="user_profile.dialog.camera">Сделать снимок</string>
-    <string name="user_profile.dialog.cancel">Отмена</string>
-    <string name="user_profile_dialog_title">Изменить фотографию профиля</string>
-    <string name="user_profile.choose.message">Выберите фото</string>
+    <string name="app_name">Михайлов Михаил</string>
+    <string name="profile.bio.dummy">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="profile.bio.hint">О себе</string>
+    <string name="profile.git.dummy">github.com/xxxxxxxxxx</string>
+    <string name="profile.git.hint">Репозиторий</string>
+    <string name="profile.vk.dummy">vk.com/xxxxxxxxxxx</string>
+    <string name="profile.vl.hint">Профиль в VK</string>
+    <string name="profile.email.dummy">xxx@xxx.xx</string>
+    <string name="profile.email.hint">E-mail</string>
+    <string name="profile.phone.dummy">8-(999)-999-99-99</string>
+    <string name="profile.phone.hint">Мобильный</string>
+    <string name="profile.statistic.project.label">Проектов</string>
+    <string name="profile.statistic.project.dummy">5</string>
+    <string name="profile.statistic.coded.label">Написано строк кода</string>
+    <string name="profile.statistic.coded.dummy">5</string>
+    <string name="profile.statistic.rating.label">Рейтинг</string>
+    <string name="profile.statistic.rating.dummy">5</string>
+
+    <string name="profile.placeholder.image">Изменить фотографию профиля</string>
+    <string name="profile.dialog.gallery">Загрузить из галлереи</string>
+    <string name="profile.dialog.camera">Сделать снимок</string>
+    <string name="profile.dialog.cancel">Отмена</string>
+    <string name="profile_dialog_title">Изменить фотографию профиля</string>
+    <string name="profile.choose.message">Выберите фото</string>
     <string name="permission_alert_message">Для корректной работы приложения необходимо дать требуемые права</string>
+
     <string name="login.password_hint">Пароль</string>
     <string name="login.forgot_password">Забыли пароль?</string>
-    <string name="login.enter_button_label">Войти</string>
+    <string name="login.enter_button.label">Войти</string>
     <string name="login.enter_label">Войти</string>
+    <string name="placeholder_text">placeholder</string>
 </resources>

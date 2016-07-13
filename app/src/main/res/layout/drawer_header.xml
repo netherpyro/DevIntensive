@@ -22,17 +22,17 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/user_name_txt"
+            android:id="@+id/user_full_name_tv"
             style="@style/nav_header_label"
             android:fontFamily="sans-serif-medium"
-            android:text="Михайлов Михаил"
+            android:text="@string/placeholder_text"
             />
 
         <TextView
             android:id="@+id/user_email_txt"
             style="@style/nav_header_label"
             android:fontFamily="sans-serif"
-            android:text="netherpyro@gmail.com"
+            android:text="@string/placeholder_text"
             />
     </LinearLayout>
 </RelativeLayout>

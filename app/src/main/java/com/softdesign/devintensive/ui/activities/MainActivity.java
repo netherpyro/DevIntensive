@@ -37,12 +37,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.softdesign.devintensive.R;
 import com.softdesign.devintensive.data.managers.DataManager;
 import com.softdesign.devintensive.utils.ConstantManager;
 import com.squareup.picasso.Picasso;
-import com.vicmikhailau.maskededittext.MaskedWatcher;
 
 import java.io.File;
 import java.io.IOException;
@@ -58,10 +58,6 @@ import butterknife.ButterKnife;
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private static final String TAG = ConstantManager.TAG_PREFIX + "Main Activity";
-
-    private DataManager mDataManager;
-    private int mCurrentEditMode = 0;
-
     @BindView(R.id.main_coordinator_container)
     CoordinatorLayout mCoordinatorLayout;
     @BindView(R.id.toolbar)
@@ -78,13 +74,22 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     AppBarLayout mAppBarLayout;
     @BindView(R.id.user_photo_img)
     ImageView mProfileImage;
+    @BindView(R.id.navigation_view)
+    NavigationView navigationView;
+
+    TextView mFullNameNav;
+    TextView mEmailNav;
+    ImageView mAvatar;
 
     @BindViews({R.id.phone_et, R.id.email_et, R.id.vk_et, R.id.repository_et, R.id.about_self_et})
     List<EditText> mUserInfoViews;
-
     @BindViews({R.id.call_img, R.id.sendto_img, R.id.view_vk_profile_img, R.id.view_git_img})
     List<ImageView> mImageViews;
+    @BindViews({R.id.rating_value, R.id.coded_lines_value, R.id.projects_value})
+    List<TextView> mUserValueViews;
 
+    private DataManager mDataManager;
+    private int mCurrentEditMode = 0;
     private AppBarLayout.LayoutParams mAppBarParams = null;
     private File mPhotoFile = null;
     private Uri mSelectedImage = null;
@@ -103,17 +108,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mFab.setOnClickListener(this);
         mProfilePlaceholder.setOnClickListener(this);
 
-        mUserInfoViews.get(0).addTextChangedListener(new MaskedWatcher("+7(###) ###-##-##"));
-        mUserInfoViews.get(2).addTextChangedListener(new MaskedWatcher("vk.com/*******************"));
-        mUserInfoViews.get(3).addTextChangedListener(new MaskedWatcher("github.com/*******************"));
+        /*mUserInfoViews.get(0).addTextChangedListener(new MaskedWatcher("+7(###) ###-##-##"));
+        mUserInfoViews.get(2).addTextChangedListener(new MaskedWatcher("vk.com******************"));
+        mUserInfoViews.get(3).addTextChangedListener(new MaskedWatcher("github.com******************"));*/
+
+        mFullNameNav = (TextView) navigationView.getHeaderView(0).findViewById(R.id.user_full_name_tv);
+        mEmailNav = (TextView) navigationView.getHeaderView(0).findViewById(R.id.user_email_txt);
+        mAvatar = (ImageView) navigationView.getHeaderView(0).findViewById(R.id.avatar);
 
         setupToolbar();
+        initImgs();
         setupDrawer();
-        loadUserInfoValue();
-        Picasso.with(this)
-                .load(mDataManager.getPreferencesManager().loadUserPhoto())
-                .placeholder(R.drawable.user_bg) // TODO: 01.07.16 сделать placeholder, transform + crop
-                .into(mProfileImage);
+        initUserFields();
+        initUserInfoValue();
+        initUserFullNameAndEmail();
 
         if (savedInstanceState != null) {
             mCurrentEditMode = savedInstanceState.getInt(ConstantManager.EDIT_MODE_KEY, 0);
@@ -157,7 +165,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     protected void onPause() {
         super.onPause();
         Log.d(TAG, "onPause");
-        saveUserInfoValue();
+        saveUserFields();
     }
 
     @Override
@@ -279,7 +287,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void setupDrawer() {
-        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
         Bitmap avatar = BitmapFactory.decodeResource(getResources(), R.drawable.userphoto);
 
         RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(getResources(), avatar);
@@ -361,11 +368,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             mCollapsingToolbar.setExpandedTitleColor(getResources().
                     getColor(R.color.color_white));
 
-            saveUserInfoValue();
+            saveUserFields();
         }
     }
 
-    private void loadUserInfoValue() {
+    private void initUserFields() {
         List<String> userData = mDataManager.getPreferencesManager().loadUserProfileData();
 
         for (int i = 0; i < userData.size(); i++) {
@@ -373,13 +380,37 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
-    private void saveUserInfoValue() {
+    private void saveUserFields() {
         List<String> userData = new ArrayList<>();
 
         for (EditText userFieldView : mUserInfoViews) {
             userData.add(userFieldView.getText().toString());
         }
         mDataManager.getPreferencesManager().saveUserProfileData(userData);
+    }
+
+    private void initUserInfoValue() {
+        List<String> userData = mDataManager.getPreferencesManager().loadUserProfileValue();
+        for (int i = 0; i < userData.size(); i++) {
+            mUserValueViews.get(i).setText(userData.get(i));
+        }
+    }
+
+    private void initUserFullNameAndEmail() {
+        mFullNameNav.setText(mDataManager.getPreferencesManager().loadFullName());
+        mEmailNav.setText(mDataManager.getPreferencesManager().loadUserProfileData().get(1));
+    }
+
+    private void initImgs() {
+        Picasso.with(this)
+                .load(mDataManager.getPreferencesManager().loadUserPhoto())
+                .placeholder(R.drawable.user_bg) // TODO: 01.07.16 сделать placeholder, transform + crop
+                .into(mProfileImage);
+
+        Picasso.with(this)
+                .load(mDataManager.getPreferencesManager().loadAvatar())
+                .placeholder(R.drawable.userphoto)
+                .into(mAvatar);
     }
 
     @Override
@@ -397,7 +428,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         takeGalleryIntent.setType("/image/*");
         startActivityForResult(
-                Intent.createChooser(takeGalleryIntent, getString(R.string.user_profile_choose_message)),
+                Intent.createChooser(takeGalleryIntent, getString(R.string.profile_choose_message)),
                 ConstantManager.REQUEST_GALLERY_PICTURE
         );
     }
@@ -479,12 +510,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         switch (id) {
             case ConstantManager.LOAD_PROFILE_PHOTO:
                 String[] selectItems = {
-                        getString(R.string.user_profile_dialog_gallery),
-                        getString(R.string.user_profile_dialog_camera),
-                        getString(R.string.user_profile_dialog_cancel)
+                        getString(R.string.profile_dialog_gallery),
+                        getString(R.string.profile_dialog_camera),
+                        getString(R.string.profile_dialog_cancel)
                 };
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle(getString(R.string.user_profile_dialog_title));
+                builder.setTitle(getString(R.string.profile_dialog_title));
                 builder.setItems(selectItems, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int choiceItem) {
