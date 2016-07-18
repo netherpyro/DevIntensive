@@ -287,7 +287,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void setupDrawer() {
-        Bitmap avatar = BitmapFactory.decodeResource(getResources(), R.drawable.userphoto);
+        Bitmap avatar = BitmapFactory.decodeResource(getResources(), R.drawable.user_bg);
 
         RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(getResources(), avatar);
         roundedBitmapDrawable.setCircular(true);
@@ -409,7 +409,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         Picasso.with(this)
                 .load(mDataManager.getPreferencesManager().loadAvatar())
-                .placeholder(R.drawable.userphoto)
+                .placeholder(R.drawable.user_bg)
                 .into(mAvatar);
     }
 

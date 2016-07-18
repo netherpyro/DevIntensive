@@ -113,4 +113,12 @@
         <item name="colorButtonNormal">@color/color_accent</item>
         <item name="android:textColor">@color/color_white</item>
     </style>
+
+    <!-- ToolBar -->
+
+    <style name="ToolBarStyle" parent="Theme.AppCompat">
+        <item name="android:textColorPrimary">@color/color_white</item>
+        <item name="android:textColorSecondary">@color/color_white</item>
+        <item name="android:actionMenuTextColor">@color/color_white</item>
+    </style>
 </resources>

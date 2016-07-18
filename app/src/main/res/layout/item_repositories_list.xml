@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/size_big_72">
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/spacing_larger_72"
+        android:layout_centerVertical="true">
+
+        <EditText
+            android:id="@+id/github_et"
+            style="@style/edit_text"
+            android:hint="@string/profile.git.hint"
+            android:inputType="text"
+            android:text="@string/profile.git.dummy"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <ImageView
+        android:id="@+id/view_git_img"
+        style="@style/icon.right"
+        android:src="@drawable/ic_visibility_black_24dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"/>
+
+</RelativeLayout>
