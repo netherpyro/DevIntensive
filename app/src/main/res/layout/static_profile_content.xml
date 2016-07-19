@@ -11,6 +11,8 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <include layout="@layout/user_statistic_block" />
+
         <LinearLayout
             style="@style/user_info_row">
 
@@ -23,7 +25,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/spacing_medium_32"></ListView>
-
 
         </LinearLayout>
 

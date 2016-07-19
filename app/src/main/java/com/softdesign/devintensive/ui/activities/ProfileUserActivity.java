@@ -39,7 +39,7 @@ public class ProfileUserActivity extends BaseActivity {
         mToolBar = (Toolbar) findViewById(R.id.toolbar);
         mProfileImage = (ImageView) findViewById(R.id.user_photo_img);
         mUserBio = (EditText) findViewById(R.id.about_self_et);
-        mUserRating = (TextView) findViewById(R.id.rating_txt);
+        mUserRating = (TextView) findViewById(R.id.rating_value);
         mUserCodeLines = (TextView) findViewById(R.id.coded_lines_value);
         mUserProjects = (TextView) findViewById(R.id.projects_value);
         mCollapsingToolBarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
