@@ -27,4 +27,5 @@ public interface ConstantManager {
     int PERMISSION_SETTINGS_REQUEST_CODE = 101;
     int PERMISSION_CAMERA_REQUEST_CODE = 102;
     int PERMISSION_CALL_REQUEST_CODE = 103;
+    int SEARCH_DELAY = 1500;
 }

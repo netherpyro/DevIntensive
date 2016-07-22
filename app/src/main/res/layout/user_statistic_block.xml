@@ -1,0 +1,62 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/user_statistic_size"
+    android:background="@color/color_grey"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/spacing_medial_24"
+    android:paddingTop="@dimen/spacing_medial_24">
+    <!--app:layout_behavior="com.softdesign.devintensive.ui.behaviors.CollapsingPadBehavior"
+    app:behavior_min_height="56dp">-->
+
+    <LinearLayout
+        style="@style/statistic_block_item_layout">
+
+        <TextView
+            android:id="@+id/rating_value"
+            style="@style/header_labels.counter"
+            android:text="@string/profile.statistic.rating.dummy"/>
+
+        <TextView
+            style="@style/header_labels.label"
+            android:text="@string/profile.statistic.rating.label"/>
+
+    </LinearLayout>
+
+    <View
+        style="@style/statistic_block_separator"/>
+
+    <LinearLayout
+        style="@style/statistic_block_item_layout"
+        android:layout_weight="2">
+
+        <TextView
+            android:id="@+id/coded_lines_value"
+            style="@style/header_labels.counter"
+            android:text="@string/profile.statistic.coded.dummy"/>
+
+        <TextView
+            style="@style/header_labels.label"
+            android:text="@string/profile.statistic.coded.label"/>
+
+    </LinearLayout>
+
+    <View
+        style="@style/statistic_block_separator"/>
+
+    <LinearLayout
+        style="@style/statistic_block_item_layout">
+
+        <TextView
+            android:id="@+id/projects_value"
+            style="@style/header_labels.counter"
+            android:text="@string/profile.statistic.project.dummy"/>
+
+        <TextView
+            style="@style/header_labels.label"
+            android:text="@string/profile.statistic.project.label"/>
+
+    </LinearLayout>
+
+</LinearLayout>
