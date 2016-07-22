@@ -77,6 +77,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @BindView(R.id.navigation_view)
     NavigationView navigationView;
 
+    // если начал с Butter Knife продолжать надо с ним иначе каша будет
     TextView mFullNameNav;
     TextView mEmailNav;
     ImageView mAvatar;
@@ -202,6 +203,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 showDialog(ConstantManager.LOAD_PROFILE_PHOTO);
                 break;
             case R.id.call_img:
+                
+                // стоило вынести всю простынь в отдельный метод
                 String number = mUserInfoViews.get(0).getText().toString();
                 if (!number.equals("") || !number.equals("null")) {
                     Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.fromParts("tel", number, null));
@@ -266,6 +269,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     }
                 }
                 break;
+                
         }
     }
 
@@ -343,6 +347,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         if (mode == 1) {
             mFab.setImageResource(R.drawable.ic_done_black_24dp);
+            
+            
+            //перебор вью можно было не делать можно было сделать пакетное изменение ButterKnife.apply(nameViews, DISABLE);
             for (EditText userValue : mUserInfoViews) {
                 userValue.setEnabled(true);
                 userValue.setFocusable(true);
@@ -402,6 +409,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void initImgs() {
+        //Реализовать синглтон в Datamanager и получить Instance от туда исспользуя Picasso Builder
         Picasso.with(this)
                 .load(mDataManager.getPreferencesManager().loadUserPhoto())
                 .placeholder(R.drawable.user_bg) // TODO: 01.07.16 сделать placeholder, transform + crop
@@ -420,6 +428,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         else super.onBackPressed();
     }
 
+
+//Добавить запрос разрешения на Write/Read External Storage
     private void loadPhotoFromGallery() {
         Intent takeGalleryIntent = new Intent(
                 Intent.ACTION_PICK,
