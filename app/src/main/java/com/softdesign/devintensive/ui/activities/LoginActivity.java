@@ -87,6 +87,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     }
 
     private void loginSuccess(UserModelRes userModel) {
+        //стоило просто создать экземпляр mPreferencesManager и сохранить в поле класса
         mDataManager.getPreferencesManager().saveAuthToken(userModel.getData().getToken());
         mDataManager.getPreferencesManager().saveUserId(userModel.getData().getUser().getId());
         mDataManager.getPreferencesManager().saveUserPhoto(Uri.parse(userModel.getData().getUser().getPublicInfo().getPhoto()));
@@ -115,6 +116,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             call.enqueue(new Callback<UserModelRes>() {
                 @Override
                 public void onResponse(Call<UserModelRes> call, Response<UserModelRes> response) {
+                    
+//Забыл try catch
                     if (response.code() == 200) {
                         loginSuccess(response.body());
                     } else if (response.code() == 404) {
